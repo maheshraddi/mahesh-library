@@ -1,0 +1,23 @@
+<h1>Edit Author</h1>
+<%= render 'shared/errors', obj: @author %>
+<%= form_with(model: @author, local: true) do |f| %>
+  <p>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :Gender%> <br/>
+    <%= f.select :gender, %i{male female}, :prompt => 'Select', required: true, inclue_blank: 'Gender' %>
+  </p>
+  <p>
+    <%= f.label :Age %><br/>
+    <%= f.text_field :age %>
+  </p>
+  <p>
+    <%= f.label :experience %><br/>
+    <%= f.text_field :experience %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

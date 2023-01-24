@@ -1,0 +1,26 @@
+<h1>Edit Book</h1>
+<%= render 'shared/errors', obj: @book %>
+
+<%= form_with(model: @book, local: true) do |f| %>
+  <p>
+    <%= f.label :Title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :Description %><br/>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :Pages %><br/>
+    <%= f.text_field :pages %>
+  </p>
+  <p>
+    <%= f.label :LauchDate %><br/>
+    <%=f.date_field :publication_date%></br>
+    </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel and Return to Authors page', authors_path %>

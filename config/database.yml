@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+  host: localhost
+  database: mahesh-library_development
+
+test:
+  <<: *default
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+  host: localhost
+  database: mahesh-library_test
+
+production:
+  <<: *default
+  database: mahesh-library_production
+  username: mahesh-library
+  password: <%= ENV["MAHESH-LIBRARY_DATABASE_PASSWORD"] %>

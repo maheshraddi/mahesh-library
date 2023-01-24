@@ -1,0 +1,20 @@
+<h1>Edit Company</h1>
+<%= render 'shared/errors', obj: @company %>
+
+<%= form_with(model: @company, local: true) do |f| %>
+  <p>
+    <%= f.label :Name %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :Website %><br/>
+    <%= f.text_field :website %>
+  </p>
+  <p>
+    <%= f.label :Location %><br/>
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

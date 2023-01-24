@@ -1,0 +1,7 @@
+<h1>Showing Company details</h1>
+  <p><strong>Name: </strong><%= @company.name %></p>
+  <p><strong>Website: </strong><%= @company.website %></p>
+  <p><strong>State: </strong><%= @company.location %></p>
+  <%= link_to 'Edit', edit_company_path(@company) %>
+  <%= link_to 'Delete' , company_path(@company), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
+  <%= link_to 'Return to author listing page', companies_path %> |

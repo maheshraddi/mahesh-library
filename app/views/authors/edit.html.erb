@@ -1,0 +1,18 @@
+<h1>Edit Author</h1>
+<%= render 'shared/errors', obj: @author %>
+
+<%= form_with(model: @author, local: true) do |f| %>
+  <p>
+    <%= f.label :Name %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :Experience %><br/>
+    <%= f.text_field :experience %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel and Return to Authors page', authors_path %>
