@@ -38,14 +38,14 @@ class RegionsController < ApplicationController
     @region.destroy
     flash[:notice] = "Region deleted successfully"
   end
-  redirect_to regions_path
+   #redirect_to regions_path
 
   private
      def set_region
        @region = Region.find(params[:id])
      end
 
-     def Region_params
+     def region_params
        params.require(:region).permit(:name,:location_id)
      end
 end

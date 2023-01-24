@@ -1,0 +1,12 @@
+<%=render 'shared/errors', obj: @region%>
+
+<h1>Edit the region</h1>
+<%=form_with(model: @region, local: true) do |f|%>
+  <p>
+  <%=f.label :region%>
+  <%=f.text_field :region%>
+  </p>
+  <p>
+  <%=f.submit%>
+  </p>
+<%end%>
