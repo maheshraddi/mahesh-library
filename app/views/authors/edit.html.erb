@@ -3,13 +3,16 @@
 
 <%= form_with(model: @author, local: true) do |f| %>
   <p>
-    <%= f.label :Name %><br/>
+    <%= f.label :Name %>
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :Experience %><br/>
+    <%= f.label :Experience %>
     <%= f.text_field :experience %>
   </p>
+  <p>
+    <%= f.label :Age %>
+    <%= f.text_field :age %>
   <p>
     <%= f.submit %>
   </p>

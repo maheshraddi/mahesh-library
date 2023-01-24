@@ -1,7 +1,7 @@
 <h1>Showing Author details</h1>
   <p><strong>Name: </strong><%= @author.name %></p>
   <p><strong>Gender:</strong><%=@author.gender %></p>
-  <p><strong>Age:</strong><%= @author.age%></p>
+  <p><strong>Age:</strong><%= @author.age %></p>
   <p><strong>Experience:</strong><%= @author.experience%></p>
    <%= link_to 'Edit', edit_author_path(@author) %>
    <%= link_to 'Delete' , author_path(@author), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>

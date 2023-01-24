@@ -1,11 +1,11 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: %i[ show edit update destroy ]
-
-  def index
-   @regions = Region.all
-  end
+  before_action :set_region, only: %i[show edit update destroy]
 
   def show
+  end
+
+  def index
+    @regions = Region.all
   end
 
   def edit
@@ -17,35 +17,36 @@ class RegionsController < ApplicationController
 
   def create
     @region = Region.new(region_params)
-     if @region.save
-       redirect_to @region
-       flash[:notice] =  "Region was successfully created."
-     else
-      render 'new' , status: :unprocessable_entity
-     end
+    if @region.save
+      flash[:notice] = "Region added successfully."
+      redirect_to regions_path
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def update
     if @region.update(region_params)
+      flash[:notice] = "Region updated successfully."
       redirect_to @region
-      flash[:notice] = "Region was successfully updated."
-     else
-     render 'edit', status: :unprocessable_entity
+    else
+      render 'edit', status: :unprocessable_entity
     end
   end
 
   def destroy
     @region.destroy
-    flash[:notice] = "Region deleted successfully"
+    flash[:notice] = " Region deleted successfully."
+    redirect_to regions_path
   end
-   #redirect_to regions_path
 
   private
-     def set_region
-       @region = Region.find(params[:id])
-     end
 
-     def region_params
-       params.require(:region).permit(:name,:location_id)
-     end
+  def set_region
+    @region = Region.find(params[:id])
+  end
+
+  def region_params
+    params.require(:region).permit(:name, :company_id)
+  end
 end

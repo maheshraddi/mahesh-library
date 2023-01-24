@@ -11,6 +11,7 @@
     <% @regions.each do |region| %>
       <tr>
         <td><%= region.name %></td>
+        <td><%= link_to 'Show' , region %></td>
         <td><%= link_to 'Delete', region_path(region), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
     </tr>
     <% end %>

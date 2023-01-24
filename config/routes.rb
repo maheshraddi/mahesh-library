@@ -7,6 +7,4 @@ Rails.application.routes.draw do
    resources :libraries
    resources :books
    resources :authors
-
-
 end

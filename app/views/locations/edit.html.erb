@@ -1,0 +1,10 @@
+<%=render 'shared/errors', obj: @location%>
+
+<h1>Edit the location</h1>
+<%=form_with(model: @location, local: true) do |f|%>
+  <p>
+  <%=f.label :location%>
+  <%=f.text_field :name%>
+  </p>
+  <%=f.submit%>
+<%end%>

@@ -1,4 +1,4 @@
 class Location < ApplicationRecord
   belongs_to :region
-  has_many :libraries
+  has_one :library
 end

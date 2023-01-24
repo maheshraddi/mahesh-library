@@ -1,0 +1,13 @@
+<%=render 'shared/errors', obj: @location%>
+
+<h1>Add new location</h1>
+<%=form_with(model: @location, local: true) do |f|%>
+   <p>
+   <%=f.label :location%>
+    <%=f.text_field :name%>
+   </p>
+   <p>
+    <%=f.hidden_field :region_id, value: params[:region_id]%>
+   </p>
+  <%=f.submit%>
+<%end%>

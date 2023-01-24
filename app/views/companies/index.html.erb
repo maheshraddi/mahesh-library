@@ -15,7 +15,7 @@
       <tr>
         <td><%= company.name %></td>
         <td><%= company.website %></td>
-        <td><%= company.location%></td>
+        <td><%= company.state%></td>
         <td><%= link_to 'Show', company %></td>
         <td><%= link_to 'Edit', edit_company_path(company) %></td>
         <td><%= link_to 'Delete', company_path(company), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
@@ -27,5 +27,5 @@
 <%=link_to 'Add new region', new_region_path%> |
 <%=link_to 'Add new book', new_book_path%> |
 <%=link_to 'Add a new company', new_company_path%> |
-<%=link_to 'Add new author', new_author_path%> 
+<%=link_to 'Add new author', new_author_path%>
 </p>

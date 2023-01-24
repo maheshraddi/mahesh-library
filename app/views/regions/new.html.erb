@@ -1,10 +1,14 @@
 <%= render 'shared/errors', obj: @region %>
-<h1>Adding region:<h1>
+
+<h1>Adding region:</h1>
 <%=form_with(model: @region, local: true) do |f|%>
   <p>
   <%=f.label :region%>
   <%=f.text_field :name%>
   </p>
-
+  <p>
+  <%=f.label :SelectCompany%>
+  <%=f.collection_select :company_id, Company.order(:id),:id,:name%>
+  </p>
   <%=f.submit%>
 <%end%>

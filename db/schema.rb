@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_131822) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
-    t.integer "book_id"
     t.integer "experience"
     t.string "gender"
     t.datetime "created_at", null: false
@@ -36,11 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_131822) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.integer "region_id"
-    t.integer "location_id"
-    t.integer "library_id"
     t.string "website"
-    t.string "location"
+    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,8 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_131822) do
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.integer "location_id"
-    t.integer "company_id"
-    t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,14 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_131822) do
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.integer "region_id"
-    t.integer "library_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
-    t.integer "location_id"
+    t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,20 +3,20 @@
 
 <%= form_with(model: @book, local: true) do |f| %>
   <p>
-    <%= f.label :Title %><br/>
+    <%= f.label :Title %>
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :Description %><br/>
+    <%= f.label :Description %>
     <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :Pages %><br/>
+    <%= f.label :Pages %>
     <%= f.text_field :pages %>
   </p>
   <p>
-    <%= f.label :LauchDate %><br/>
-    <%=f.date_field :publication_date%></br>
+    <%= f.label :LauchDate %><
+    <%=f.date_field :launchdate%>
     </p>
   <p>
     <%= f.submit %>

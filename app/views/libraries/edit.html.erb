@@ -3,24 +3,11 @@
 
 <%= form_with(model: @library, local: true) do |f| %>
   <p>
-    <%= f.label :Title %><br/>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :TotalPages %><br/>
-    <%= f.text_field :totalpages %>
-  </p>
-  <p>
-    <%= f.label :PublishedData %><br/>
-    <%= f.text_field :state %>
-  </p>
-  <p>
-    <%= f.label :City %><br/>
-    <%= f.text_field :city %>
-  </p>
+    <%= f.label :Library %><br/>
+    <%= f.text_field :name %>
   <p>
     <%= f.submit %>
   </p>
 <% end %>
 
-<%= link_to 'Cancel and Return to Company page', companies_path %>
+<%= link_to 'Return to home page', companies_path %>

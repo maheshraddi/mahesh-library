@@ -2,5 +2,8 @@
 <h1>Regions</h1>
   <p><strong>Name: </strong><%= @region.name %></p>
   <%= link_to 'Edit', edit_region_path(@region) %>
-  <%= link_to 'Delete' , region_path(@region), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
-  <%= link_to 'Return to home page', regions_path %> |
+  <%= link_to 'Delete' , region_path(@region), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %> |
+  <%= link_to 'Return to home page', regions_path %>
+  <p>
+    <%= link_to 'Add new location' , new_location_path(region_id: @region.id) %>
+    <p>
