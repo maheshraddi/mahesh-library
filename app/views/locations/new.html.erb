@@ -7,7 +7,8 @@
     <%=f.text_field :name%>
    </p>
    <p>
-    <%=f.hidden_field :region_id, value: params[:region_id]%>
+     <%# <%=f.collection_select :region_id, Region.order(:id),:id,:name%> %>
+     <%=f.hidden_field :region_id, value: params[:region_id]%> %>
    </p>
   <%=f.submit%>
 <%end%>

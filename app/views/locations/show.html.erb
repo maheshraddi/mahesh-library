@@ -1,6 +1,8 @@
-<h1>
-  <u>Location details:</u>
+  <h1>Location details:</h1>
   <p><strong>Name: </strong><%= @location.name %></p>
   <%=link_to 'Edit location', edit_location_path%> |
   <%= link_to 'delete location', location_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure, this action will also delete the libraries associated with it."}%>
-</h1>
+
+<p>
+   <%= link_to 'Location home page', locations_path %>
+</p>

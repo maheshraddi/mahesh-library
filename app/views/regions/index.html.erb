@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Region:</th>
+      <th>Comapany:</th>
     </tr>
   </thead>
 
@@ -11,14 +12,15 @@
     <% @regions.each do |region| %>
       <tr>
         <td><%= region.name %></td>
+        <td><%= region.company.name%></td>
         <td><%= link_to 'Show' , region %></td>
         <td><%= link_to 'Delete', region_path(region), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%=link_to 'add new region', new_region_path%> |
-<%= link_to 'Return to home page' , companies_path %>
+<p>
+  <%=link_to 'add new region', new_region_path%> |
+  <%= link_to 'Return to home page' , companies_path %> |
+  <%= link_to 'View Locations', locations_path %>
+</p>

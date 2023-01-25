@@ -6,7 +6,6 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.all
-    @region = Region.find(params[:region_id])
   end
 
   def edit
@@ -14,7 +13,6 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
-    @region = Region.find(params[:region_id])
   end
 
   def create
@@ -37,10 +35,10 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    @region = @location.region
+    # @region = @location.region
     @location.destroy
     flash[:notice] = "Location deleted successfully."
-    redirect_to locations_path(region_id: @region.id)
+    redirect_to locations_path
   end
   private
 
