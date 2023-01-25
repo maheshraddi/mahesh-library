@@ -1,0 +1,29 @@
+<h1>Listing Libraries</h1>
+<table>
+    <thead>
+     <tr>
+       <th>Library</th>
+       <th>Company</th>
+       <th>Region</th>
+       <th>Location</th>
+       <th colspan="3"></th>
+     </tr>
+     </thead>
+    <tbody>
+      <% @libraries.each do |library| %>
+        <tr>
+          <<td><%= library.name %></td>
+          <td><%= library.company.name %></td> 
+          <td><%= library.location.region.name %></td>
+          <td><%= library.location.name %></td>
+          <td><%= link_to 'Show', library %></td>
+          <td><%= link_to 'Edit', edit_library_path(library) %></td>
+          <td><%= link_to 'Delete', library_path(library), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
+       </tr>
+      <% end %>
+    </tbody>
+</table>
+  <p>
+   <%= link_to 'Return to companies home page', companies_path %>
+   <%=link_to 'Return to libraries page', libraries_path %>
+  </p>

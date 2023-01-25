@@ -3,7 +3,8 @@
   <p><strong>Website: </strong><%= @company.website %></p>
   <p><strong>State: </strong><%= @company.state %></p>
   <%= link_to 'Edit', edit_company_path(@company) %> |
-  <%= link_to 'Delete' , company_path(@company), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %> 
+  <%= link_to 'Delete' , company_path(@company), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
 <p>
   <%= link_to 'Return to author listing page', companies_path %>
+  <%= link_to "Add Library", new_library_path(company_id: @company.id) %>
 </p>

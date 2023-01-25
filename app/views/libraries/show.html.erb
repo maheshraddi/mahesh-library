@@ -1,0 +1,8 @@
+<h1>Library: <%= @library.name %></h1>
+<p>Company: <%= @library.company.name %></p>
+<p>Region: <%= @library.location.region.name %></p>
+<p>Location: <%= @library.location.name %></p>
+<p>Books: <%= @library.books.count %></p>
+<%= link_to 'Edit Library', edit_library_path(@library) %> |
+<%= link_to 'Delete Library', library_path(@library), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Add Books', new_book_path %>

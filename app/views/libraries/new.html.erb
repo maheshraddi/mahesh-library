@@ -1,0 +1,15 @@
+<h1>Adding new library</h1>
+<%= render 'shared/errors', obj: @library %>
+<%= form_with(model: @library, local: true) do |f| %>
+<p>
+  <%= f.label :name%>
+  <%=f.text_field :name%>
+</p>
+<p>
+  <%= f.label :region %>
+  <%= f.collection_select :region_id, Region.all, :id, :name %>
+  <%= f.label :location %>
+  <%= f.collection_select :location_id, Location.all, :id, :name %>
+</p>
+  <%= f.submit "Add Library" %>
+<% end %>

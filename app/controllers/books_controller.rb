@@ -3,7 +3,6 @@ class BooksController < ApplicationController
 
   def index
    @books = Book.all
-   @library = Library.find(params[:library_id])
   end
 
   def show
@@ -16,15 +15,15 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  def create
-    @book = Book.new(book_params)
-     if @book.save
-       redirect_to @book
-       flash[:notice] =  "Book was successfully created."
-     else
-      render 'new' , status: :unprocessable_entity
-     end
-  end
+   def create
+     @book = Book.new(book_params)
+       if @book.save
+          redirect_to @book
+          flash[:notice] = "Book was successfully created."
+        else
+         render 'new', status: :unprocessable_entity
+       end
+   end
 
   def update
     if @book.update(book_params)
