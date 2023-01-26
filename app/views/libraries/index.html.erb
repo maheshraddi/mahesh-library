@@ -12,8 +12,8 @@
     <tbody>
       <% @libraries.each do |library| %>
         <tr>
-          <<td><%= library.name %></td>
-          <td><%= library.company.name %></td> 
+          <td><%= library.name %></td>
+          <td><%= library.company.name %></td>
           <td><%= library.location.region.name %></td>
           <td><%= library.location.name %></td>
           <td><%= link_to 'Show', library %></td>
@@ -27,3 +27,18 @@
    <%= link_to 'Return to companies home page', companies_path %>
    <%=link_to 'Return to libraries page', libraries_path %>
   </p>
+
+  <script>
+  $(document).on('change', '#region', function getLocations() {
+      var selectedRegions = $(this).val();
+      $.ajax({
+        url: "/locations_by_region",
+        method: "GET",
+        data: { regions: selectedRegions },
+        success: function(data) {
+          $("#location_ids").html(data);
+        }
+      });
+    });
+  </script>
+

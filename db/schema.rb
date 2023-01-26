@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_061137) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_163544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_061137) do
     t.bigint "region_id"
     t.index ["company_id"], name: "index_libraries_on_company_id"
     t.index ["region_id"], name: "index_libraries_on_region_id"
+  end
+
+  create_table "library_locations", force: :cascade do |t|
+    t.integer "library_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "library_regions", force: :cascade do |t|
+    t.integer "library_id"
+    t.integer "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "locations", force: :cascade do |t|

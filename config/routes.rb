@@ -7,4 +7,5 @@ Rails.application.routes.draw do
    resources :libraries
    resources :books
    resources :authors
+   get '/load_locations', to: 'libraries#load_locations', as: 'load_locations'
 end
