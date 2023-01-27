@@ -7,7 +7,9 @@
     <%=f.text_field :name%>
    </p>
    <p>
-     <%=f.hidden_field :region_id, value: params[:region_id]%> %>
+     <%=f.hidden_field :region_id, value: params[:region_id]%>
    </p>
   <%=f.submit%>
 <%end%>
+
+<%= link_to 'Cancel and Return to locations page', locations_path %>

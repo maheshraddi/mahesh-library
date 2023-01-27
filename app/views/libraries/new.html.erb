@@ -1,19 +1,56 @@
-<h1>Adding new library</h1>
-<%= form_with(model: @library, local: true, data: {remote: true}, method: :post) do |f| %>
+<%= render 'shared/errors', obj: @library %>
+<h1>Adding library:</h1>
+<%=form_for @library do |form|%>
+  <%=form.hidden_field :company_id, value: params[:company_id]%>
   <p>
-   <%= f.label :name %>
-   <%= f.text_field :name %>
+   <%=form.label "Name:"%>
+   <%=form.text_field :name%></br>
   </p>
-  <p>
-     <%=f.hidden_field :company_id, value: params[:company_id]%>
-   </p>
-  <p>
-   <%= f.label :Region %>
-   <%= f.select :region_ids, options_from_collection_for_select(Region.all, :id, :name),  {include_hidden: false}, {:multiple => true, :class=>"form-control",id: "region"} %>
-  </p>
-  <p>
-   <%= f.label :Location %>
-   <%= f.select :location_ids, options_for_select([["Select Locations"]]), {include_hidden: false}, {class: "form-control" ,id: "location_ids" , multiple: true} %>     
-  </p>
-   <%= f.submit "Add Library" %>
-<% end %>
+    <div data-controller="form-element">
+      <%= form.button "Validate", formaction: new_library_path(@company_id), formmethod: :get, data: { turbo_frame: :location_field, form_element_target: "submitbtn"} %>
+        <%= form.label("Select_Regions:")%>
+        <%= form.collection_check_boxes :region_ids, Region.all,:id,:name, {include_blank: "-none-", include_hidden: false}, { data: { action: "change->form-element#remotesubmit"}, multiple: true} %>
+    </div>
+
+  <%= turbo_frame_tag :location_field do %>
+    <%unless @region == nil%>
+      <% @region.each do |region|%>
+        <%= form.label "Locations in region:"%>
+        <%= form.collection_check_boxes :location_ids, region.locations.order(:name),:id,:name, {include_blank: "-none-", include_hidden: false}, { multiple: true } %></br>
+      <% end %>
+    <%end%>
+  <% end %>
+  <%=form.submit%>
+<%end%>
+
+
+<%= link_to 'Cancel and Return to libraries page', libraries_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

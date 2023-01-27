@@ -1,13 +1,10 @@
-<h1>Edit Library</h1>
-<%= render 'shared/errors', obj: @library %>
+<%=render 'shared/errors', obj: @library%>
 
-<%= form_with(model: @library, local: true) do |f| %>
-  <p>
-    <%= f.label :Library %><br/>
-    <%= f.text_field :name %>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<h1>Edit the library</h1>
+<%=form_with(model: @library, local: true) do |f|%>
+  <%=f.label :library%>
+  <%=f.text_field :name%>
+  <%=f.submit%>
+<%end%>
 
-<%= link_to 'Return to home page', companies_path %>
+<%= link_to 'Cancel and Return to libraries page', libraries_path %>

@@ -1,44 +1,27 @@
-<h1>Listing Libraries</h1>
+<h1> Available libraries.</h1>
+
 <table>
-    <thead>
-     <tr>
-       <th>Library</th>
-       <th>Company</th>
-       <th>Region</th>
-       <th>Location</th>
-       <th colspan="3"></th>
-     </tr>
-     </thead>
-    <tbody>
-      <% @libraries.each do |library| %>
-        <tr>
-          <td><%= library.name %></td>
-          <td><%= library.company.name %></td>
-          <td><%= library.location.region.name %></td>
-          <td><%= library.location.name %></td>
-          <td><%= link_to 'Show', library %></td>
-          <td><%= link_to 'Edit', edit_library_path(library) %></td>
-          <td><%= link_to 'Delete', library_path(library), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
-       </tr>
-      <% end %>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Library</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libraries.each do |library| %>
+      <tr>
+        <td><%= library.name %></td>
+        <td><%= link_to 'Show', library %></td>
+        <td><%= link_to 'Edit', edit_library_path(library) %></td>
+        <td><%= link_to 'Delete', library_path(library), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
-  <p>
-   <%= link_to 'Return to companies home page', companies_path %>
-   <%=link_to 'Return to libraries page', libraries_path %>
-  </p>
 
-  <script>
-  $(document).on('change', '#region', function getLocations() {
-      var selectedRegions = $(this).val();
-      $.ajax({
-        url: "/locations_by_region",
-        method: "GET",
-        data: { regions: selectedRegions },
-        success: function(data) {
-          $("#location_ids").html(data);
-        }
-      });
-    });
-  </script>
-
+<p>
+<%= link_to 'Authors listing page' , authors_path %>
+<%= link_to 'Books listing page' , books_path%>
+<%= link_to 'Home page', companies_path %>
+</p>

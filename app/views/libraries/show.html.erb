@@ -1,8 +1,21 @@
-<h1>Library: <%= @library.name %></h1>
-<p>Company: <%= @library.company.name %></p>
-<p>Region: <%= @library.location.region.name %></p>
-<p>Location: <%= @library.location.name %></p>
-<p>Books: <%= @library.books.count %></p>
-<%= link_to 'Edit Library', edit_library_path(@library) %> |
-<%= link_to 'Delete Library', library_path(@library), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Add Books', new_book_path %>
+<h1>Library details</h1>
+  <p><strong>Name: </strong><%= @library.name %></p>
+    <%= link_to 'Edit', edit_library_path(@library) %> |
+    <%= link_to 'Delete' , library_path(@library), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
+  <% @library.regions.each do |region| %>
+     <p><strong>Region:</strong> <%= region.name %></p>
+  <% end %>
+  <% @library.locations.each do|location| %>
+     <p><strong>Location:</strong> <%= location.name %></p>
+  <% end %>
+   <%if @library.books.any?%>
+      <b> <%=link_to 'Books', books_path(library_id: @library.id)%></b>
+      <%else%>
+     No books in library, <%= link_to ' Add books to library', new_book_path(library_id: @library.id)%></br>
+    <% end %>
+<p>
+    <b>
+       <%= link_to 'Back libraries page', libraries_path %> 
+       <%= link_to 'Return to Comapnies listing page', companies_path %> |
+    </b>
+</p>

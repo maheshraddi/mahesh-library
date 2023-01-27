@@ -1,69 +1,59 @@
 class LibrariesController < ApplicationController
+  before_action :set_library, only: %i[show edit update destroy]
 
- before_action :set_library, only: %i[ show edit update destroy ]
+  def show
+  end
 
- def index
-  @libraries = Library.all
- end
+  def index
+    @libraries = Library.all
+  end
 
- end
+  def edit
+  end
 
- def show
- end
-
- def edit
- end
-
- def new
-     @library = Library.new(library_params)
-    @company = Company.find(params[:format])
+  def new
+    @library = Library.new(library_params)
     unless params[:library] == nil
       @region = Array.new
-      params[:library][:region_id].each do |reg|
-        reg.to_i
-        @region << Region.find(reg)
+      params[:library][:region_ids].each do |r|
+        r.to_i
+        @region << Region.find(r)
       end
     end
   end
 
- def create
-  @library = Library.new(library_params)
-  if @library.save
-   flash[:notice] = "Library was successfully created."
-   redirect_to @library
-  else
-   render 'new' , status: :unprocessable_entity
-  end
- end
-
- def update
-  if @library.update(library_params)
-  flash[:notice] = "Library was successfully updated."
-   redirect_to @library
-  else
-   render 'edit', status: :unprocessable_entity
+  def create
+    @library = Library.new(library_params)
+    if @library.save
+      flash[:notice] = "Library added successfully."
+      redirect_to @library
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
- def destroy
-  @library.destroy
-  flash[:notice] = "Library deleted successfully"
-  redirect_to libraries_path
- end
+  def update
+    if @library.update(library_params)
+      flash[:notice] = "Library updated successfully."
+      redirect_to @library
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
 
- 
+  def destroy
+    @library.destroy
+    flash[:notice] =  "library deleted successfully."
+    redirect_to libraries_path
+  end
 
- private
+  private
+
   def set_library
     @library = Library.find(params[:id])
   end
-  
-
-  
 
   def library_params
-    params.require(:library).permit(:name, :location_id,:region_id,:company_id)
+    params.fetch(:library, {}).permit(:name,:company_id, location_ids: [], region_ids: [])
   end
-
-
-  
-  end
+end

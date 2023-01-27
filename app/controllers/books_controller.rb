@@ -13,6 +13,12 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    if params.include?(:library_id)
+      @library = Library.find(params[:library_id])
+    else
+      @library = Library.all
+    end
+    @author = Author.all
   end
 
    def create
@@ -41,11 +47,11 @@ class BooksController < ApplicationController
   end
 
   private
-     def set_author
+     def set_book
        @book = Book.find(params[:id])
      end
 
      def book_params
-       params.require(:book).permit(:title, :description,:pages,:launchdate,:library_id, :author_id)
+       params.require(:book).permit(:title, :description, :pages, :launchdate,:library_id, :author_id)
      end
 end

@@ -1,30 +1,39 @@
-<h1>Adding new Book</h1>
-<%= render 'shared/errors', obj: @book %>
+<%=render 'shared/errors', obj: @book%>
+<h1>Adding new book:</h1>
+<%=form_with(model: @book, local: true) do |f|%>
+  <p>
+   <%=f.label :Title%>
+   <%=f.text_field :title%>
+  </p>
+  <p>
+   <%=f.label :Description%>
+   <%=f.text_area :description%>
+  </p>
+  <p>
+   <%=f.label :Pages%>
+   <%=f.text_field :pages%>
+  </p>
+  <p>
+   <%=f.label :Established_on%>
+   <%=f.date_field :launchdate%>
+  </p>
+  <p>
+   <%=f.label("Choose author for the book:")%>
+   <%= f.collection_select :author_id, Author.order(:name),:id,:name, include_blank: "-none-"%>
+  </p>
+  <%if @library == Library.all%>
+  <p> 
+    <%=f.label("Select a library to add the book:")%>
+    <%= f.collection_select :library_id, Library.order(:name),:id,:name, include_blank: "-none-"%>
+  </p>
+    <%else%>
+    <%=f.hidden_field :library_id, value: params[:library_id]%>
+  <% end %>
+  <p>
+    <%=f.submit%>
+  </p>
+<%end%>
 
-<%= form_with(model: @book, local: true) do |f| %>
-  <p>
-    <%= f.label :Title %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :Description %>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :Pages %>
-    <%= f.text_field :pages %>
-  </p>
-  <p>
-    <%= f.label :LauchDate %><
-    <%=f.date_field :launchdate%>
-  </p>
-  <p>
-    <%=f.hidden_field :author_id, value: params[:author_id]%>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-<p>
+
 <%= link_to 'Cancel and Return to Books page', books_path %>
-</p>
+

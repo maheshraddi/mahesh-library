@@ -2,6 +2,8 @@
   <p><strong>Title: </strong><%= @book.title %></p>
   <p><strong>Description:</strong><%= @book.description %></p>
   <p><strong>No of Pages:</strong><%=@book.pages %></p>
-  <p><strong>Launch Date:</strong><%= @book.lanuchdate%></p>
+  <p><strong>Launch Date:</strong><%= @book.launchdate %></p>
    <%= link_to 'Delete' , book_path(@book), data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
-   <%= link_to 'Return to book listing page', books_path %> |
+   <p>
+   <%= link_to 'Return to book listing page', books_path %> 
+   </p>
