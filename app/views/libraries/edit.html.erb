@@ -1,5 +1,14 @@
-<%= render 'shared/errors', obj: @library %>
+<% if @library.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@library.errors.count, "error") %> prohibited this library from being saved:</h2>
 
+  <ul>
+  <% @library.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
 <h1>Editing library:</h1>
 <%= form_with(model: @library, local: true) do |form| %>
    <p>
@@ -12,8 +21,8 @@
          <%= form.collection_check_boxes :region_ids, Region.all,:id,:name, {include_blank: "-none-", include_hidden: false}, { data: { action: "change->form-element#remotesubmit"}, multiple: true} %>
      </div>
     
- <%= turbo_frame_tag :location_field do %>
-   <% unless params[:library].nil? || @region.nil? %>
+  <%= turbo_frame_tag :location_field do %>
+   <%  unless @region.nil? %>
      <% @region.each do |region|%>
        <%= form.label "Locations in region:"%>
        <%= form.collection_check_boxes :location_ids, region.locations.order(:name),:id,:name, {include_blank: "-none-", include_hidden: false}, { multiple: true } %></br>

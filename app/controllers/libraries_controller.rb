@@ -34,22 +34,16 @@ class LibrariesController < ApplicationController
     if @library.save
       flash[:notice] = "Library added successfully."
       redirect_to @library
-    else
+     else
       render 'new', status: :unprocessable_entity
     end
   end
 
   def update
-    @library = Library.find(params[:id])
     if @library.update(library_params)
       flash[:notice] = "Library was successfully updated."
       redirect_to @library
-    else
-      @region = Array.new
-      params[:library][:region_ids].each do |r|
-       r = r.to_i
-        @region << Region.find(r)
-      end
+     else
       render 'edit' , status: :unprocessable_entity
     end
   end
@@ -69,3 +63,5 @@ class LibrariesController < ApplicationController
     params.fetch(:library, {}).permit(:name,:company_id, location_ids: [], region_ids: [])
   end
 end
+
+
