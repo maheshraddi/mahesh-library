@@ -5,6 +5,9 @@
   <p>
   <%=f.label :location%>
   <%=f.text_field :name%>
+  <p>
+  <%=f.label :Region%>
+  <%=f.collection_select :region_id, Region.order(:id),:id,:name%>
   </p>
   <%=f.submit%>
 <%end%>

@@ -11,6 +11,10 @@
     <%= f.text_field :experience %>
   </p>
   <p>
+    <%= f.label :Gender%> <br/>
+    <%= f.select :gender, %i{male female}, :prompt => 'Select', required: true, inclue_blank: 'Gender' %>
+  </p>
+  <p>
     <%= f.label :Age %>
     <%= f.text_field :age %>
   <p>

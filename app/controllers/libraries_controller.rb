@@ -9,6 +9,13 @@ class LibrariesController < ApplicationController
   end
 
   def edit
+    if params[:library] && params[:library][:region_ids]
+      @region = Array.new
+      params[:library][:region_ids].each do |r|
+        r = r.to_i
+        @region << Region.find(r)
+      end
+    end
   end
 
  def new
@@ -33,14 +40,19 @@ class LibrariesController < ApplicationController
   end
 
   def update
+    @library = Library.find(params[:id])
     if @library.update(library_params)
-      flash[:notice] = "Library updated successfully."
+      flash[:notice] = "Library was successfully updated."
       redirect_to @library
     else
-      render 'edit', status: :unprocessable_entity
+      @region = Array.new
+      params[:library][:region_ids].each do |r|
+       r = r.to_i
+        @region << Region.find(r)
+      end
+      render 'edit' , status: :unprocessable_entity
     end
   end
-
   def destroy
     @library.destroy
     flash[:notice] =  "library deleted successfully."

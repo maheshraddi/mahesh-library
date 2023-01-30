@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @library %>
 <h1>Adding library:</h1>
-<%=form_for @library do |form|%>
+<%= form_with(model: @library, local: true) do |form| %>
   <%=form.hidden_field :company_id, value: params[:company_id]%>
   <p>
    <%=form.label "Name:"%>

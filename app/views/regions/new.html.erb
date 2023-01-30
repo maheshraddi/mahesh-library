@@ -8,7 +8,7 @@
   </p>
   <p>
     <%=f.label :SelectCompany%>
-    <%=f.collection_select :company_id, Company.order(:id),:id,:name%>
+    <%=f.collection_select :company_id, Company.order(:id),:id,:name ,  {include_blank: "-none-", include_hidden: false}%>
   </p>
     <%=f.submit%>
 <%end%>

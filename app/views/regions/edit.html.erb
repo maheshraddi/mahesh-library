@@ -1,15 +1,17 @@
-<%=render 'shared/errors', obj: @region%>
+<h1>Edit Regions</h1>
+<%= render 'shared/errors', obj: @region %>
 
-<h1>Edit the region</h1>
-<%=form_with(model: @region, local: true) do |f|%>
+<%= form_with(model: @region, local: true) do |f| %>
   <p>
-  <%=f.label :region%>
-  <%=f.text_field :region%>
+    <%= f.label :Region %><br/>
+    <%= f.text_field :name %>
   </p>
   <p>
-  <%=f.submit%>
+    <%=f.label :SelectCompany%>
+    <%=f.collection_select :company_id, Company.order(:id),:id,:name%>
   </p>
-<%end%>
-<p>
- <%= link_to 'Back to regions home page', regions_path %>
-</p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%=link_to 'cancle and return to home page', regions_path  %>

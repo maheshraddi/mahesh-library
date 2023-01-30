@@ -11,3 +11,5 @@ export default class extends Controller {
     this.submitbtnTarget.click()
   }
 }
+
+
