@@ -11,14 +11,14 @@ class LibrariesController < ApplicationController
   def edit
   end
 
-  def new
+ def new
     @library = Library.new(library_params)
-    unless params[:library] == nil
-      @region = Array.new
-      params[:library][:region_ids].each do |r|
-        r.to_i
-        @region << Region.find(r)
-      end
+    if params[:library] && params[:library][:region_ids]
+     @region = Array.new
+     params[:library][:region_ids].each do |r|
+       r = r.to_i
+       @region << Region.find(r)
+     end
     end
   end
 

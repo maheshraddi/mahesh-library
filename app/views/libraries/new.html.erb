@@ -13,7 +13,7 @@
     </div>
 
   <%= turbo_frame_tag :location_field do %>
-    <%unless @region == nil%>
+    <% unless params[:library].nil? || @region.nil? %>
       <% @region.each do |region|%>
         <%= form.label "Locations in region:"%>
         <%= form.collection_check_boxes :location_ids, region.locations.order(:name),:id,:name, {include_blank: "-none-", include_hidden: false}, { multiple: true } %></br>
