@@ -10,10 +10,12 @@ class Library < ApplicationRecord
   validates :region_ids, presence: true
   validates :location_ids, presence: true
 
+end
+
 #   validate :region_and_location_presence
 
 #   def region_and_location_presence
 #     errors.add(:regions, "must select at least one ") if regions.empty?
 #     errors.add(:locations, "must select at least one ") if locations.empty?
 #   end
-end
+# end

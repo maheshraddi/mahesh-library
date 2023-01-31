@@ -15,8 +15,9 @@ class LibrariesController < ApplicationController
         r = r.to_i
         @region << Region.find(r)
       end
-    end
+     end
   end
+  
 
  def new
     @library = Library.new(library_params)
@@ -31,22 +32,30 @@ class LibrariesController < ApplicationController
 
   def create
     @library = Library.new(library_params)
-    if @library.save
-      flash[:notice] = "Library added successfully."
-      redirect_to @library
-     else
-      render 'new', status: :unprocessable_entity
+
+    respond_to do |format|
+      if @library.save
+        format.html { redirect_to library_url(@library), notice: "library was successfully created." }
+        format.json { render :show, status: :created, location: @library }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @library.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @library.update(library_params)
-      flash[:notice] = "Library was successfully updated."
-      redirect_to @library
-     else
-      render 'edit' , status: :unprocessable_entity
+    respond_to do |format|
+      if @library.update(library_params)
+        format.html { redirect_to library_url(@library), notice: "library was successfully updated." }
+        format.json { render :show, status: :ok, location: @library }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @library.errors, status: :unprocessable_entity }
+      end
     end
   end
+  
   def destroy
     @library.destroy
     flash[:notice] =  "library deleted successfully."

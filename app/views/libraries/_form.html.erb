@@ -1,0 +1,55 @@
+
+<%= form_with(model: library) do |form| %>
+<%= render 'shared/errors', obj: @library %>
+  <%=form.hidden_field :company_id, value: params[:company_id]%>
+  <p>
+   <%=form.label "Name:"%>
+   <%=form.text_field :name%></br>
+  </p>
+    <div data-controller="form-element">
+      <%= form.button "Validate", formaction: new_library_path(@company_id), formmethod: :get, data: { turbo_frame: :location_field, form_element_target: "submitbtn"} %>
+        <%= form.label("Select_Regions:")%>
+        <%= form.collection_check_boxes :region_ids, Region.all,:id,:name, {include_blank: "-none-", include_hidden: false}, { data: { action: "change->form-element#remotesubmit"}, multiple: true} %>
+    </div>
+
+  <%= turbo_frame_tag :location_field do %>
+    <% unless params[:library].nil? || @region.nil? %>
+      <% @region.each do |region|%>
+        <%= form.label "Locations in region:"%>
+        <%= form.collection_check_boxes :location_ids, region.locations.order(:name),:id,:name, {include_blank: "-none-", include_hidden: false}, { multiple: true } %></br>
+      <% end %>
+    <%end%>
+  <% end %>
+  <%=form.submit%>
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
